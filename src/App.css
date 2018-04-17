@@ -1,16 +1,40 @@
-.App {
-  text-align: center;
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.app-wrapper.intro {
+  grid-template-rows: auto 1fr;
+  grid-auto-rows: max-content;
+}
+
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333;
   color: white;
+  padding: 1em;
 }
 
-.App-title {
-  font-size: 1.5em;
+.app-nav.intro {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.app-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2.25em;
+  font-weight: 600;
+}
+
+.app-title.isCompact {
+  font-size: 1.25em;
 }
 
 .App-intro {
