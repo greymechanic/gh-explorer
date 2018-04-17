@@ -1,16 +1,14 @@
-.organization-wrapper {
-}
-
-small {
+.repo-list small {
   font-size: 0.75em;
 }
 
-ul {
+ul.repo-list {
   padding: 0;
   list-style-type: none;
 }
 
-li {
+.repo-list li {
+  cursor: pointer;
   list-style-type: none;
   font-size: 1.25em;
   font-weight: 600;
@@ -18,24 +16,26 @@ li {
   padding-bottom: 0.25em;
 }
 
-li.active {
+.repo-list li.active {
   background: #f8f8f8;
 }
 
-li span {
+.repo-list li span {
   padding-left: 0.5em;
   font-size: 0.75em;
   font-weight: 400;
 }
 
-li .trigger {
-  cursor: none;
+.repo-list li .trigger {
   opacity: 0;
   color: #2882f9;
   transition: opacity 0.2s ease;
 }
 
-li:hover .trigger {
-  cursor: pointer;
+.repo-list li.active .trigger {
+  color: #666666;
+}
+
+.repo-list li:hover .trigger {
   opacity: 1;
 }

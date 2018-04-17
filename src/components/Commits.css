@@ -1,0 +1,51 @@
+ul.commit-list {
+  list-style-type: none;
+  padding: 1em 0 1em 0;
+  background: #f8f8f8;
+}
+
+.commit-list h6 {
+  color: #666666;
+  margin: 0;
+  padding-bottom: 1em;
+}
+
+.commit-list li {
+  cursor: normal;
+  font-size: 0.75em;
+  font-weight: 400;
+  padding-top: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+.commit-list li a {
+  text-decoration: none;
+  color: #181818;
+}
+
+.commit-list li a:hover .message {
+  text-decoration: underline;
+}
+
+.commit-list li .message {
+  font-weight: 600;
+  color: #181818;
+  padding-bottom: 0.5em;
+}
+
+.commit-list li .additional {
+  padding-bottom: 0.25em;
+}
+
+.extras {
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+.extras.loading {
+  color: #666666;
+}
+
+.extras.error {
+  color: red;
+}

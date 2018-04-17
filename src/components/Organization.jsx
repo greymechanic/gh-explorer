@@ -3,6 +3,7 @@ import {Query} from "react-apollo";
 import gql from "graphql-tag";
 import classnames from "classnames";
 import "./Organization.css";
+import Commits from "./Commits";
 
 const GET_GH_ORGANIZATION = gql`
   query Organization($organization: String!) {
@@ -12,6 +13,9 @@ const GET_GH_ORGANIZATION = gql`
         edges {
           node {
             name
+            owner {
+              login
+            }
             stargazers {
               totalCount
             }
@@ -26,11 +30,16 @@ export default class Organization extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {highlightedRepo: ""};
+    this.state = {highlightedRepo: {name: "", owner: ""}};
   }
 
-  showCommits = repositoryName => {
-    this.setState({highlightedRepo: repositoryName});
+  showCommits = (repositoryName, repositoryOwner) => {
+    const clearSelection = this.state.highlightedRepo.name === repositoryName;
+    this.setState({
+      highlightedRepo: clearSelection
+        ? {name: "", owner: ""}
+        : {name: repositoryName, owner: repositoryOwner},
+    });
   };
 
   render() {
@@ -48,20 +57,36 @@ export default class Organization extends React.Component {
             <div className="organization-wrapper">
               <h2>{data.organization.name}</h2>
               <small>Popular Repositories</small>
-              <ul>
+              <ul class="repo-list">
                 {data.organization.repositories.edges.map((repo, i) => {
+                  const isSelected =
+                    repo.node.name === this.state.highlightedRepo.name;
                   return (
-                    <li
-                      key={i}
-                      className={classnames({
-                        active: repo.node.name === this.state.highlightedRepo,
-                      })}
-                      onClick={() => this.showCommits(repo.node.name)}
-                    >
-                      {repo.node.name}
-                      <span>{repo.node.stargazers.totalCount} stargazers</span>
-                      <span className="trigger">browse commits</span>
-                    </li>
+                    <React.Fragment>
+                      <li
+                        key={i}
+                        className={classnames({
+                          active: isSelected,
+                        })}
+                        onClick={() =>
+                          this.showCommits(
+                            repo.node.name,
+                            repo.node.owner.login
+                          )
+                        }
+                      >
+                        {repo.node.name}
+                        <span>
+                          {repo.node.stargazers.totalCount} stargazers
+                        </span>
+                        <span className="trigger">
+                          {isSelected ? "collapse" : "browse commits"}
+                        </span>
+                      </li>
+                      {isSelected ? (
+                        <Commits repo={this.state.highlightedRepo} />
+                      ) : null}
+                    </React.Fragment>
                   );
                 })}
               </ul>
