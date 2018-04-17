@@ -5,7 +5,12 @@
   grid-template-columns: 1fr;
 }
 
-.app-wrapper.intro {
+/*
+ * In "detail" mode the header should collapse to a standard
+ * nav bar at the top of the page but retail all from when
+ * there is no data.
+ */
+.app-wrapper.detail {
   grid-template-rows: auto 1fr;
   grid-auto-rows: max-content;
 }
@@ -20,10 +25,21 @@
   padding: 1em;
 }
 
-.app-nav.intro {
+/*
+ * In "detail" mode the header content should shrink and
+ * stick to opposite ends of the page.
+ */
+.app-nav.detail {
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+}
+
+.app-header {
+  max-width: 400px;
+}
+
+.app-header.detail p {
+  display: none;
 }
 
 .app-title {
@@ -31,21 +47,13 @@
   margin-bottom: 0;
   font-size: 2.25em;
   font-weight: 600;
+  cursor: pointer;
 }
 
-.app-title.isCompact {
+.app-title.detail {
   font-size: 1.25em;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-detail {
+  margin: 1em;
 }

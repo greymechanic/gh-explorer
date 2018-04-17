@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./OrganizationSearch.css";
 
 export default class OrganizationSearch extends React.Component {
   constructor(props) {
@@ -20,11 +21,11 @@ export default class OrganizationSearch extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="org-search" onSubmit={this.handleSubmit}>
         <label>
-          Search for a GitHub Organization:
           <input
             type="text"
+            placeholder="Enter a GitHub Organization"
             value={this.state.value}
             onChange={this.handleChange}
           />

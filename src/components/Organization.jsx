@@ -6,7 +6,7 @@ const GET_GH_ORGANIZATION = gql`
   query Organization($organization: String!) {
     organization(login: $organization) {
       name
-      repositories(last: 10) {
+      repositories(orderBy: {field: STARGAZERS, direction: DESC}, first: 12) {
         edges {
           node {
             name
