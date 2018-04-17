@@ -14,11 +14,28 @@ li {
   list-style-type: none;
   font-size: 1.25em;
   font-weight: 600;
-  padding-bottom: 0.5em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+li.active {
+  background: #f8f8f8;
 }
 
 li span {
   padding-left: 0.5em;
   font-size: 0.75em;
   font-weight: 400;
+}
+
+li .trigger {
+  cursor: none;
+  opacity: 0;
+  color: #2882f9;
+  transition: opacity 0.2s ease;
+}
+
+li:hover .trigger {
+  cursor: pointer;
+  opacity: 1;
 }
